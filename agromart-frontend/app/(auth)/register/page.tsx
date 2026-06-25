@@ -41,72 +41,14 @@ export default function RegisterPage() {
 
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
-      {/* Left panel — farm illustration, dimmed */}
+      {/* Left panel — image, dimmed */}
       <div className="relative hidden overflow-hidden lg:block">
-        <svg
-          viewBox="0 0 800 1000"
+        {/* REPLACE THIS SRC with your own image link */}
+        <img
+          src="https://i.pinimg.com/webp/1200x/e6/cd/60/e6cd60214080c20aa8954bfa79447fc8.webp"
+          alt="Farm"
           className="absolute inset-0 h-full w-full object-cover"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {/* Sky */}
-          <rect width="800" height="1000" fill="#A8D5E8" />
-          {/* Sun glow */}
-          <circle cx="620" cy="160" r="90" fill="#FCE9B8" opacity="0.8" />
-          {/* Distant hills */}
-          <path d="M0,420 Q200,360 400,400 T800,380 L800,520 L0,520 Z" fill="#C9D98A" />
-          {/* Wheat field */}
-          <path d="M0,480 L800,460 L800,620 L0,640 Z" fill="#E0B84A" />
-          <g stroke="#C99B2E" strokeWidth="3" opacity="0.5">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <line key={i} x1={i * 22} y1={500 + (i % 3) * 6} x2={i * 22} y2={460 + (i % 3) * 6} />
-            ))}
-          </g>
-          {/* Farmhouse */}
-          <g transform="translate(560,360)">
-            <rect x="0" y="40" width="110" height="80" fill="#8C5A3A" />
-            <polygon points="-10,40 55,0 120,40" fill="#5E3A24" />
-            <rect x="45" y="70" width="22" height="50" fill="#3E2A1A" />
-            <rect x="14" y="58" width="16" height="16" fill="#CFE7F2" />
-          </g>
-          {/* Pond */}
-          <ellipse cx="330" cy="560" rx="80" ry="26" fill="#6FA8C9" opacity="0.85" />
-          {/* Grazing field */}
-          <rect x="0" y="600" width="800" height="120" fill="#86A93E" />
-          {/* Cows / sheep (simple blobs) */}
-          <g fill="#F4F1EA">
-            <ellipse cx="470" cy="500" rx="20" ry="13" />
-            <ellipse cx="510" cy="510" rx="18" ry="12" />
-            <ellipse cx="610" cy="495" rx="16" ry="11" />
-          </g>
-          {/* Crop rows */}
-          <rect x="0" y="700" width="800" height="300" fill="#3F6B2E" />
-          {Array.from({ length: 6 }).map((_, row) => (
-            <g key={row} transform={`translate(0, ${720 + row * 45})`}>
-              {Array.from({ length: 18 }).map((_, i) => (
-                <circle
-                  key={i}
-                  cx={20 + i * 44}
-                  cy={0}
-                  r="14"
-                  fill={row % 2 === 0 ? "#4F8A3D" : "#5DA14A"}
-                />
-              ))}
-            </g>
-          ))}
-          {/* Tomatoes / crates accent */}
-          <g transform="translate(60,920)">
-            <rect width="90" height="40" rx="4" fill="#7A4A2A" />
-            {Array.from({ length: 5 }).map((_, i) => (
-              <circle key={i} cx={14 + i * 16} cy={18} r="9" fill="#C0392B" />
-            ))}
-          </g>
-          {/* Hen */}
-          <g transform="translate(220,940)">
-            <ellipse cx="0" cy="0" rx="22" ry="16" fill="#F5F5F0" />
-            <circle cx="20" cy="-10" r="9" fill="#F5F5F0" />
-            <polygon points="28,-10 40,-7 28,-4" fill="#E0A030" />
-          </g>
-        </svg>
+        />
 
         {/* Dim overlay */}
         <div className="absolute inset-0 bg-primary-900/55" />
@@ -127,7 +69,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Right panel — form */}
-      <div className="flex items-center justify-center bg-white px-6 py-12">
+      <div className="flex items-center justify-center bg-primary-400 px-6 py-12">
         <div className="w-full max-w-sm">
           <p className="text-xs font-semibold uppercase tracking-wide text-primary-700">
             Join AgroMart
