@@ -57,7 +57,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right panel — form */}
-      <div className="flex items-center justify-center bg-white px-6 py-12">
+      <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
           <p className="text-3xl font-semibold uppercase tracking-wide text-primary-700 lg:hidden">
             AgroMart
@@ -65,10 +65,10 @@ export default function LoginPage() {
           <p className="text-xs font-semibold uppercase tracking-wide text-primary-700 mt-6">
             Welcome back
           </p>
-          <h1 className="mt-1 text-2xl font-bold text-neutral-900">
+          <h1 className="mt-1 text-2xl font-bold text-neutral-300">
             Log in to your account
           </h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <p className="mt-1 text-lg text-neutral-300">
             Don&apos;t have an account?{" "}
             <a href="/register" className="font-medium text-primary-700 hover:underline">
               Create one
@@ -77,7 +77,7 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
-              <label className="text-xs font-medium text-neutral-700">Email address</label>
+              <label className="text-lg font-medium text-neutral-300">Email address</label>
               <input
                 name="email"
                 type="email"
@@ -89,7 +89,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="text-xs font-medium text-neutral-700">Password</label>
+              <label className="text-lg font-medium text-neutral-300">Password</label>
               <input
                 name="password"
                 type="password"
@@ -109,7 +109,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-primary-700 py-2.5 text-sm font-medium text-white transition hover:bg-primary-900 disabled:opacity-60"
+              className="w-full rounded-lg bg-primary-700 py-2.5 text-lg font-medium text-white transition hover:bg-primary-900 disabled:opacity-60"
             >
               {loading ? "Logging in..." : "Log in"}
             </button>
