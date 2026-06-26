@@ -114,23 +114,44 @@ export default function HomePage() {
       </section>
 
       {/* Why choose */}
+     {/* Why choose */}
       <section className="px-6 py-20 lg:px-12">
         <h2 className="text-center text-3xl font-bold text-white">Why Choose AgroMart?</h2>
         <p className="mx-auto mt-2 max-w-xl text-center text-neutral-400">
           Built specifically for Nigerian farmers and distributors.
         </p>
-        <div className="mx-auto mt-12 grid max-w-4xl gap-8 sm:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-3">
           {[
-            { icon: "🔒", title: "Direct Communication", desc: "Talk straight to the seller — no hidden fees or middlemen." },
-            { icon: "🤝", title: "Community Focused", desc: "Built around how Nigerian farmers and sellers already work." },
-            { icon: "📈", title: "Built to Grow", desc: "A simple foundation today, ready for payments and tracking tomorrow." },
+            {
+              image: "https://i.pinimg.com/736x/fb/e2/6a/fbe26ac388ed1e6b0c2b749aba0eb5ed.jpg",
+              title: "Direct Communication",
+              desc: "Talk straight to the seller — no hidden fees or middlemen.",
+            },
+            {
+              image: "https://i.pinimg.com/1200x/2c/8b/25/2c8b25b72b029df0399e2637a2e6f8cb.jpg",
+              title: "Community Focused",
+              desc: "Built around how Nigerian farmers and sellers already work.",
+            },
+            {
+              image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80",
+              title: "Built to Grow",
+              desc: "A simple foundation today, ready for payments and tracking tomorrow.",
+            },
           ].map((f) => (
-            <div key={f.title} className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-900 text-xl">
-                {f.icon}
+            <div
+              key={f.title}
+              className="overflow-hidden rounded-xl border border-surface-border bg-surface-raised"
+            >
+              {/* REPLACE THIS SRC with your own image link */}
+              <img
+                src={f.image}
+                alt={f.title}
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-6">
+                <h3 className="font-semibold text-white">{f.title}</h3>
+                <p className="mt-1 text-sm text-neutral-400">{f.desc}</p>
               </div>
-              <h3 className="mt-4 font-semibold text-white">{f.title}</h3>
-              <p className="mt-1 text-sm text-neutral-400">{f.desc}</p>
             </div>
           ))}
         </div>
