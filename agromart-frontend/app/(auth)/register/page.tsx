@@ -16,6 +16,8 @@ export default function RegisterPage() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -27,11 +29,13 @@ export default function RegisterPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    try {
+  
+   try {
       const data = await registerUser(form);
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      router.push("/products");
+      setSuccess("Account created successfully! Redirecting...");
+      setTimeout(() => router.push("/products"), 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Registration failed");
     } finally {
@@ -160,6 +164,18 @@ export default function RegisterPage() {
                 <option value="seller">Seller (fertilizer supplier)</option>
               </select>
             </div>
+
+            {error && (
+              <p className="rounded-lg bg-error/10 px-3 py-2 text-sm text-error">
+                {error}
+              </p>
+            )}
+
+              {success && (
+              <p className="rounded-lg bg-success/10 px-3 py-2 text-sm font-medium text-success">
+                ✓ {success}
+              </p>
+            )}
 
             {error && (
               <p className="rounded-lg bg-error/10 px-3 py-2 text-sm text-error">
