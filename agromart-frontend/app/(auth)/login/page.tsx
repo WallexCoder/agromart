@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,13 +19,14 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    try {
+   try {
       const data = await loginUser(form);
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      router.push("/products");
+      setSuccess("Account created successfully! Redirecting...");
+      setTimeout(() => router.push("/products"), 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      setError(err instanceof Error ? err.message : "Registration failed");
     } finally {
       setLoading(false);
     }
@@ -99,6 +101,18 @@ export default function LoginPage() {
                 className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm outline-none focus:border-primary-500"
               />
             </div>
+
+            {error && (
+              <p className="rounded-lg bg-error/10 px-3 py-2 text-sm text-error">
+                {error}
+              </p>
+            )}
+
+              {success && (
+              <p className="rounded-lg bg-success/10 px-3 py-2 text-sm font-medium text-success">
+                ✓ {success}
+              </p>
+            )}
 
             {error && (
               <p className="rounded-lg bg-error/10 px-3 py-2 text-sm text-error">
