@@ -33,20 +33,21 @@ export default function ProductsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-surface text-neutral-50">
+    <main className="min-h-screen bg-surface text-neutral-50 font-serif">
       {/* Nav */}
       <header className="sticky top-0 z-30 border-b border-surface-border bg-surface/95 backdrop-blur">
         <div className="flex items-center justify-between px-6 py-4 lg:px-12">
-          <Link href="/" className="text-lg font-bold text-primary-300">
-            AgroMart
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm text-neutral-300 hover:text-primary-300">
+          <a href="/homepage"><div className="flex items-center gap-2">
+            <img className="w-14" src="/image/icon.png" alt="" />
+            <span className="text-xl font-bold text-primary-500 mt-5">AgroMart</span>
+          </div></a>
+         <div className="flex items-center gap-3">
+            <Link href="/login" className="hidden text-lg font-medium text-neutral-300 hover:text-primary-300 sm:block">
               Log in
             </Link>
             <Link
               href="/register"
-              className="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-500"
+              className="rounded-lg bg-primary-700 px-4 py-2 text-lg font-medium text-white transition hover:bg-primary-500"
             >
               Get started
             </Link>
