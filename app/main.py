@@ -9,7 +9,9 @@ app = FastAPI(title="AgroMart API", version="1.0.0")
 # Tighten allow_origins to your real frontend URL(s) before going to production.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+    "http://localhost:3000",
+    "https://your-vercel-url.vercel.app",],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
