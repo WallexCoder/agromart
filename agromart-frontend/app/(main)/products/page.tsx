@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface Product {
@@ -15,18 +16,37 @@ interface Product {
   created_at: string;
 }
 
+interface User {
+  first_name: string;
+  role: string;
+}
+
 export default function ProductsPage() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    // Check if user is logged in
+    const stored = localStorage.getItem("user");
+    if (stored) setUser(JSON.parse(stored));
+
+    // Fetch products
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
       .then((r) => r.json())
       .then((data) => setProducts(data))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    router.push("/login");
+  }
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
@@ -37,21 +57,48 @@ export default function ProductsPage() {
       {/* Nav */}
       <header className="sticky top-0 z-30 border-b border-surface-border bg-surface/95 backdrop-blur">
         <div className="flex items-center justify-between px-6 py-4 lg:px-12">
-          <a href="/homepage"><div className="flex items-center gap-2">
-            <img className="w-14" src="/image/icon.png" alt="" />
-            <span className="text-xl font-bold text-primary-500 mt-5">AgroMart</span>
-          </div></a>
-         <div className="flex items-center gap-3">
-            <Link href="/login" className="hidden text-lg font-medium text-neutral-300 hover:text-primary-300 sm:block">
-              Log in
-            </Link>
-            <Link
-              href="/register"
-              className="rounded-lg bg-primary-700 px-4 py-2 text-lg font-medium text-white transition hover:bg-primary-500"
-            >
-              Get started
-            </Link>
-          </div>
+          <a href="/">
+            <div className="flex items-center gap-2">
+              <img className="w-14" src="/image/icon.png" alt="" />
+              <span className="text-xl font-bold text-primary-500 mt-5">AgroMart</span>
+            </div>
+          </a>
+
+          {/* Auth-aware nav */}
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-neutral-400">Hi, {user.first_name}</span>
+              {user.role === "seller" && (
+                <Link
+                  href="/dashboard"
+                  className="text-sm text-neutral-300 hover:text-primary-300"
+                >
+                  Dashboard
+                </Link>
+              )}
+              <button
+                onClick={handleLogout}
+                className="rounded-lg border border-surface-border px-4 py-2 text-sm text-neutral-300 transition hover:border-error hover:text-error"
+              >
+                Log out
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                href="/login"
+                className="hidden text-lg font-medium text-neutral-300 hover:text-primary-300 sm:block"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/register"
+                className="rounded-lg bg-primary-700 px-4 py-2 text-lg font-medium text-white transition hover:bg-primary-500"
+              >
+                Get started
+              </Link>
+            </div>
+          )}
         </div>
       </header>
 
